@@ -27,9 +27,15 @@ for file in "${!pages[@]}"; do
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
+  <div id="header"></div>
+
   <main>
     $content
   </main>
+
+  <div id="footer"></div>
+
+  <script src="js/include.js"></script>
 </body>
 </html>
 HTML
