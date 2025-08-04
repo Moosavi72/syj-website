@@ -1,111 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>About SYJ Network</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
-
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
   <main>
-    <section>
+    <section class="hero animated">
       <h1>About SYJ Network</h1>
-      <p class="tagline"><strong>Educate. Mine. Transact. Transform India with Crypto.</strong></p>
+      <p class="tagline">Empowering India through blockchain education, mining, and real-world crypto adoption.</p>
     </section>
-
-    <section>
-      <h2>Introduction / Overview</h2>
-      <p>SYJ Token is a pioneering cryptocurrency initiative by <strong>Sayanjali Nexus Pvt Ltd</strong>, aimed at empowering India through education, mining, and real-world token utility.</p>
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Who We Are</h2>
+        <p>SYJ Network is a project by Sayanjali Nexus Pvt Ltd, aiming to make blockchain technology accessible to everyone in India.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Our Mission</h2>
+        <p>To educate, enable, and empower individuals to participate in the new decentralized economy.</p>
+      </div>
+      <div class="card interactive">
+        <h2>What We Offer</h2>
+        <ul>
+          <li>SYJ Token for mining and transactions</li>
+          <li>Crypto learning platform</li>
+          <li>Community forums and governance</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Our Values</h2>
+        <ul>
+          <li>Transparency</li>
+          <li>Innovation</li>
+          <li>Inclusivity</li>
+          <li>Security</li>
+        </ul>
+      </div>
     </section>
-
-    <section>
-      <h2>Vision</h2>
-      <p><em>To educate India about cryptocurrency, make it a part of everyday life, and empower millions through mining, learning, and real-world token utility.</em></p>
-    </section>
-
-    <section>
-      <h2>Mission</h2>
-      <ul>
-        <li>Educate India about blockchain and crypto through a dedicated learning platform.</li>
-        <li>Provide a mining application for easy participation in crypto.</li>
-        <li>Integrate SYJ Token into daily life and business.</li>
-        <li>Build a trusted ecosystem under Sayanjali Nexus.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Our Story / History</h2>
-      <p>Sayanjali Nexus Pvt Ltd was founded to address the lack of awareness and real-world usage of cryptocurrency in India. The SYJ Token was created to bridge this gap and bring crypto to everyone.</p>
-      <ul>
-        <li><strong>2025:</strong> Token development and platform planning</li>
-        <li><strong>2025:</strong> Mining app beta</li>
-        <li><strong>2026:</strong> Learning platform launch</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Mining Application</h2>
-      <p>Our mining app is designed for everyone:</p>
-      <ul>
-        <li>Easy to use</li>
-        <li>No heavy technical knowledge required</li>
-        <li>Earn rewards in SYJ Token</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Learning Platform</h2>
-      <p>Learn about:</p>
-      <ul>
-        <li>Cryptocurrency basics</li>
-        <li>Blockchain technology</li>
-        <li>Trading &amp; investing safely</li>
-        <li>Real-world token usage</li>
-        <li>Advanced crypto economy</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Token Utility</h2>
-      <ul>
-        <li>Mining rewards</li>
-        <li>Learning incentives</li>
-        <li>Payment and ecosystem transactions</li>
-        <li>Community governance (future)</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Team</h2>
-      <p>Founded by visionary leaders at Sayanjali Nexus Pvt Ltd. More contributors and hiring coming soon.</p>
-    </section>
-
-    <section>
-      <h2>Roadmap</h2>
-      <ul>
-        <li><strong>Q3 2025:</strong> Token launch</li>
-        <li><strong>Q4 2025:</strong> Mining app beta</li>
-        <li><strong>Q1 2026:</strong> Learning platform beta</li>
-        <li><strong>Q2 2026:</strong> Ecosystem integration and partnerships</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Join the Movement</h2>
-      <p>Be part of India's crypto revolution! Connect with us:</p>
-      <ul>
-        <li><a href="https://github.com/syj-network/syj-website" target="_blank">GitHub</a></li>
-        <li><a href="https://t.me/yourtelegram" target="_blank">Telegram</a></li>
-        <li><a href="https://discord.gg/yourdiscord" target="_blank">Discord</a></li>
-        <li><a href="mailto:contact@syj-network.com">Email</a></li>
-      </ul>
+    <section class="cta animated">
+      <h2>Be a part of the SYJ journey!</h2>
+      <a href="community.html" class="btn">Join the Community</a>
+      <a href="roadmap.html" class="btn btn-secondary">See Our Roadmap</a>
     </section>
   </main>
-
-  <div id="footer"></div>
-
-  <script src="js/include.js"></script>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+  </script>
 </body>
 </html>
