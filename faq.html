@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FAQ</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ FAQ — Frequently Asked Questions</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="faq.html" class="active">FAQ</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
 
   <main>
-    <h1>Frequently Asked Questions</h1><p>Find answers to the most common questions about SYJ Network.</p>
+    <section class="hero animated">
+      <h1>Frequently Asked Questions</h1>
+      <p class="tagline">Find answers about SYJ, mining, tokenomics, and more.</p>
+    </section>
+
+    <section class="faq-tabs">
+      <button class="tablink active" onclick="openTab(event, 'faq1')">What is SYJ Token?</button>
+      <button class="tablink" onclick="openTab(event, 'faq2')">How do I start mining?</button>
+      <button class="tablink" onclick="openTab(event, 'faq3')">How can I use SYJ?</button>
+      <button class="tablink" onclick="openTab(event, 'faq4')">Is SYJ secure?</button>
+      <button class="tablink" onclick="openTab(event, 'faq5')">How to join the community?</button>
+
+      <div id="faq1" class="tabcontent" style="display:block;">SYJ is a community-focused crypto token launched by Sayanjali Nexus Pvt Ltd for mining, learning, and real-world use.</div>
+      <div id="faq2" class="tabcontent">Download our mining app, create an account, and start earning SYJ tokens.</div>
+      <div id="faq3" class="tabcontent">Use SYJ for mining rewards, education incentives, transactions, and future governance.</div>
+      <div id="faq4" class="tabcontent">SYJ runs on audited smart contracts and transparent blockchain records for maximum security.</div>
+      <div id="faq5" class="tabcontent">Join our Telegram or Discord, follow us on GitHub, and participate in forums and events.</div>
+    </section>
   </main>
 
-  <div id="footer"></div>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
 
-  <script src="js/include.js"></script>
+  <script>
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+    function openTab(evt, tabName) {
+      document.querySelectorAll('.tabcontent').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.tablink').forEach(e => e.classList.remove('active'));
+      document.getElementById(tabName).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
 </body>
 </html>
