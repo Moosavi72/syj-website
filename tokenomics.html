@@ -1,20 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYJ Tokenomics</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ Tokenomics — Powering the Ecosystem</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div id="header"></div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html" class="active">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
 
   <main>
-    <h1>Tokenomics</h1><p>Explore the token distribution and economic model of SYJ Token.</p>
+    <section class="hero animated">
+      <h1>SYJ Tokenomics</h1>
+      <p class="tagline">See how SYJ powers and rewards the entire ecosystem.</p>
+    </section>
+    
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Token Distribution</h2>
+        <canvas id="tokenPie" width="200" height="200"></canvas>
+        <ul>
+          <li>50% Mining Rewards</li>
+          <li>20% Team</li>
+          <li>15% Community</li>
+          <li>15% Ecosystem</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Utility</h2>
+        <ul>
+          <li>Mining rewards</li>
+          <li>Learning incentives</li>
+          <li>Payments & transactions</li>
+          <li>Community governance (future)</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Transparency</h2>
+        <p>All token movements are visible on the blockchain for trust and accountability.</p>
+        <a href="#" class="btn btn-small">View on Explorer</a>
+      </div>
+    </section>
+    
+    <section class="faq-tabs">
+      <button class="tablink active" onclick="openTab(event, 'tok1')">How is SYJ distributed?</button>
+      <button class="tablink" onclick="openTab(event, 'tok2')">What is its utility?</button>
+      <button class="tablink" onclick="openTab(event, 'tok3')">Is it audited?</button>
+      <div id="tok1" class="tabcontent" style="display:block;">SYJ Token is distributed among miners, team, community, and ecosystem partners.</div>
+      <div id="tok2" class="tabcontent">SYJ is used for rewards, payments, learning, and future governance.</div>
+      <div id="tok3" class="tabcontent">Yes! Our smart contracts will be audited for security and transparency.</div>
+    </section>
   </main>
 
-  <div id="footer"></div>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
 
-  <script src="js/include.js"></script>
+  <script>
+    // Hamburger menu
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+    // FAQ Tabs
+    function openTab(evt, tabName) {
+      document.querySelectorAll('.tabcontent').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.tablink').forEach(e => e.classList.remove('active'));
+      document.getElementById(tabName).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+    // Tokenomics Pie Chart
+    window.onload = function() {
+      var ctx = document.getElementById('tokenPie').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Mining Rewards', 'Team', 'Community', 'Ecosystem'],
+          datasets: [{
+            data: [50, 20, 15, 15],
+            backgroundColor: ['#FCD535', '#23262F', '#FFD700', '#1E2026'],
+          }]
+        },
+        options: {
+          plugins: { legend: { display: true, position: 'bottom', labels: { color: '#F5F6FA' } } },
+        }
+      });
+    };
+  </script>
 </body>
 </html>
