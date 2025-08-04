@@ -1,20 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Community</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ Community — Join the Crypto Revolution</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html" class="active">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
 
   <main>
-    <h1>Community</h1><p>Join our growing SYJ community and connect with like-minded innovators.</p>
+    <section class="hero animated">
+      <h1>SYJ Community</h1>
+      <p class="tagline">Connect, discuss, and build India's crypto future together.</p>
+      <a href="https://t.me/yourtelegram" class="btn" target="_blank">Join Telegram</a>
+      <a href="https://discord.gg/yourdiscord" class="btn btn-secondary" target="_blank">Join Discord</a>
+    </section>
+    
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Discussion Forums</h2>
+        <p>Share ideas, ask questions, and get help from fellow members.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Events & Meetups</h2>
+        <p>Participate in online and offline events to learn and network.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Contribute</h2>
+        <p>Become a project contributor, ambassador, or support team member.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Governance</h2>
+        <p>Have your say in community decisions and future proposals.</p>
+      </div>
+    </section>
   </main>
 
-  <div id="footer"></div>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
 
-  <script src="js/include.js"></script>
+  <script>
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+  </script>
 </body>
 </html>
