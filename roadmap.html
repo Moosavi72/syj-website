@@ -1,20 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYJ Network Roadmap</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ Roadmap — The Journey Ahead</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
-
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html" class="active">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
   <main>
-    <h1>Roadmap</h1><p>Discover our future plans and upcoming milestones.</p>
+    <section class="hero animated">
+      <h1>SYJ Roadmap</h1>
+      <p class="tagline">See how SYJ Network is building India's crypto future, step by step.</p>
+    </section>
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Q3 2025</h2>
+        <ul>
+          <li>SYJ Token Launch</li>
+          <li>Core Team Formation</li>
+          <li>Website & Community Setup</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Q4 2025</h2>
+        <ul>
+          <li>SYJ Mining App Beta</li>
+          <li>Education Portal Alpha</li>
+          <li>First Community Events</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Q1 2026</h2>
+        <ul>
+          <li>Education Platform Launch</li>
+          <li>Token Utility Expansion</li>
+          <li>Partnership Announcements</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Q2 2026 & Beyond</h2>
+        <ul>
+          <li>Community Governance</li>
+          <li>DeFi Integrations</li>
+          <li>Global Expansion</li>
+        </ul>
+      </div>
+    </section>
+    <section class="cta animated">
+      <h2>Ready to be part of the journey?</h2>
+      <a href="community.html" class="btn">Join Our Community</a>
+    </section>
   </main>
-
-  <div id="footer"></div>
-
-  <script src="js/include.js"></script>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+  </script>
 </body>
 </html>

@@ -1,20 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Education</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ Education — Learn Crypto the Easy Way</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html" class="active">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
 
   <main>
-    <h1>Education</h1><p>Access tutorials, guides, and resources for learning about blockchain and SYJ.</p>
+    <section class="hero animated">
+      <h1>Learn Crypto with SYJ</h1>
+      <p class="tagline">Master blockchain, trading, and real-world crypto use—step by step.</p>
+      <a href="#courses" class="btn">Explore Courses</a>
+      <a href="#resources" class="btn btn-secondary">Free Resources</a>
+    </section>
+
+    <section class="features grid" id="courses">
+      <div class="card interactive">
+        <h2>Crypto Basics</h2>
+        <p>Understand how cryptocurrencies work, wallets, and transactions.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Blockchain Technology</h2>
+        <p>Learn about decentralization, consensus, and smart contracts.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Trading & Safety</h2>
+        <p>Get guides on safe trading, investing, and risk management.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Advanced Topics</h2>
+        <p>DeFi, NFTs, token utility, and the future of crypto in India.</p>
+      </div>
+    </section>
+
+    <section class="faq-tabs">
+      <button class="tablink active" onclick="openTab(event, 'edu1')">Who can learn?</button>
+      <button class="tablink" onclick="openTab(event, 'edu2')">Are courses free?</button>
+      <button class="tablink" onclick="openTab(event, 'edu3')">Will I earn SYJ?</button>
+      <div id="edu1" class="tabcontent" style="display:block;">Everyone! No prior crypto experience required.</div>
+      <div id="edu2" class="tabcontent">Most resources are free. Premium and certification available soon.</div>
+      <div id="edu3" class="tabcontent">Yes! Complete learning modules and earn SYJ Token incentives.</div>
+    </section>
   </main>
 
-  <div id="footer"></div>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
 
-  <script src="js/include.js"></script>
+  <script>
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+    function openTab(evt, tabName) {
+      document.querySelectorAll('.tabcontent').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.tablink').forEach(e => e.classList.remove('active'));
+      document.getElementById(tabName).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
 </body>
 </html>

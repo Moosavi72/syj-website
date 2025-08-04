@@ -1,20 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mining SYJ</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ Mining — Earn Crypto Easily</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html" class="active">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
 
   <main>
-    <h1>Mining</h1><p>Learn how to mine SYJ tokens and participate in securing the network.</p>
+    <section class="hero animated">
+      <h1>Start Mining SYJ Token</h1>
+      <p class="tagline">Mine crypto with a tap. No heavy hardware or technical skills needed!</p>
+      <a href="#how-to-mine" class="btn">How to Mine</a>
+      <a href="#rewards" class="btn btn-secondary">View Rewards</a>
+    </section>
+    
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Easy Mining App</h2>
+        <p>Download our app, register, and start earning SYJ Token instantly.</p>
+        <ul>
+          <li>User-friendly interface</li>
+          <li>Secure cloud mining</li>
+          <li>Mobile-first experience</li>
+        </ul>
+        <a href="#" class="btn btn-small">Download App</a>
+      </div>
+      <div class="card interactive">
+        <h2>Mining Rewards</h2>
+        <p>Earn SYJ tokens for every active session. Invite friends for bonuses!</p>
+        <ul>
+          <li>Daily mining yield</li>
+          <li>Referral rewards</li>
+          <li>Special events & boosts</li>
+        </ul>
+      </div>
+      <div class="card interactive">
+        <h2>Security & Transparency</h2>
+        <p>Your earnings are safe and visible on the blockchain. Track your progress anytime.</p>
+      </div>
+    </section>
+
+    <section class="faq-tabs">
+      <button class="tablink active" onclick="openTab(event, 'mine1')">How does mining work?</button>
+      <button class="tablink" onclick="openTab(event, 'mine2')">What do I need?</button>
+      <button class="tablink" onclick="openTab(event, 'mine3')">Is it safe?</button>
+      <div id="mine1" class="tabcontent" style="display:block;">SYJ mining uses cloud resources, requiring only your phone or PC and an account. </div>
+      <div id="mine2" class="tabcontent">Just download our app and register—no hardware needed.</div>
+      <div id="mine3" class="tabcontent">Yes! Mining is secure and your rewards are recorded transparently on-chain.</div>
+    </section>
   </main>
 
-  <div id="footer"></div>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
 
-  <script src="js/include.js"></script>
+  <script>
+    // Hamburger menu
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+    // FAQ Tabs
+    function openTab(evt, tabName) {
+      document.querySelectorAll('.tabcontent').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.tablink').forEach(e => e.classList.remove('active'));
+      document.getElementById(tabName).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+  </script>
 </body>
 </html>

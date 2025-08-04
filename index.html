@@ -1,20 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SYJ Network - Home</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SYJ Network — Transform India with Crypto</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <div id="header"></div>
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="dropdown">
+          <a href="#">Learn</a>
+          <div class="dropdown-content">
+            <a href="education.html">Education</a>
+            <a href="faq.html">FAQ</a>
+          </div>
+        </li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <button id="theme-toggle" class="btn btn-small">🌙</button>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
 
   <main>
-    <h1>Welcome to SYJ Network</h1><p>Your decentralized future begins here. Explore our ecosystem and join the revolution.</p>
- </main>
+    <section class="hero animated">
+      <h1>
+        <span class="typewriter" id="typewriter">Transform India with Crypto</span>
+      </h1>
+      <p class="tagline">Educate. Mine. Transact. <br>Join the SYJ revolution for a decentralized future.</p>
+      <a href="mining.html" class="btn">Start Mining</a>
+      <a href="education.html" class="btn btn-secondary">Learn Crypto</a>
+    </section>
 
-  <div id="footer"></div>
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Why SYJ?</h2>
+        <p>Empower India through blockchain learning, easy mining, real-world token utility.</p>
+      </div>
+      <div class="card interactive">
+        <h2>Tokenomics</h2>
+        <canvas id="tokenPie" width="200" height="200"></canvas>
+      </div>
+      <div class="card interactive">
+        <h2>Roadmap</h2>
+        <div class="roadmap-timeline">
+          <div class="timeline-step">
+            <span class="timeline-icon">🚀</span>
+            <span class="timeline-label">Q3 2025: Token Launch</span>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-icon">📱</span>
+            <span class="timeline-label">Q4 2025: Mining App Beta</span>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-icon">🎓</span>
+            <span class="timeline-label">Q1 2026: Education Platform</span>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-icon">🤝</span>
+            <span class="timeline-label">Q2 2026: Partnerships</span>
+          </div>
+        </div>
+        <a href="roadmap.html" class="btn btn-small">See Full Roadmap</a>
+      </div>
+    </section>
 
-  <script src="js/include.js"></script>
+    <section class="faq-tabs">
+      <h2>Frequently Asked Questions</h2>
+      <button class="tablink active" onclick="openTab(event, 'tab1')">What is SYJ?</button>
+      <button class="tablink" onclick="openTab(event, 'tab2')">How to Mine?</button>
+      <button class="tablink" onclick="openTab(event, 'tab3')">Token Utility</button>
+      <div id="tab1" class="tabcontent" style="display:block;">SYJ is India's community-driven crypto token...</div>
+      <div id="tab2" class="tabcontent">Download our app, register, and start mining SYJ with a tap!</div>
+      <div id="tab3" class="tabcontent">SYJ is used for rewards, payments, and future governance.</div>
+    </section>
+
+    <section class="cta animated">
+      <h2>Be part of India's crypto revolution!</h2>
+      <a href="community.html" class="btn">Join Our Community</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
+
+  <!-- Advanced UI scripts -->
+  <script>
+    // Typewriter effect
+    const typewriterText = ["Transform India with Crypto", "Educate. Mine. Transact.", "SYJ: India's Crypto Revolution"];
+    let twIndex = 0, chIndex = 0, current = '', isDeleting = false;
+    function type() {
+      const twElem = document.getElementById('typewriter');
+      if (!twElem) return;
+      const full = typewriterText[twIndex];
+      current = isDeleting ? full.substring(0, chIndex--) : full.substring(0, chIndex++);
+      twElem.textContent = current;
+      if (!isDeleting && chIndex === full.length) setTimeout(() => isDeleting = true, 900);
+      if (isDeleting && chIndex === 0) {
+        isDeleting = false;
+        twIndex = (twIndex + 1) % typewriterText.length;
+      }
+      setTimeout(type, isDeleting ? 55 : 110);
+    }
+    type();
+
+    // FAQ Tabs
+    function openTab(evt, tabName) {
+      document.querySelectorAll('.tabcontent').forEach(e => e.style.display = 'none');
+      document.querySelectorAll('.tablink').forEach(e => e.classList.remove('active'));
+      document.getElementById(tabName).style.display = 'block';
+      evt.currentTarget.classList.add('active');
+    }
+
+    // Pie chart for Tokenomics
+    window.onload = function() {
+      const ctx = document.getElementById('tokenPie').getContext('2d');
+      new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: ['Mining Rewards', 'Team', 'Community', 'Ecosystem'],
+          datasets: [{
+            data: [50, 20, 15, 15],
+            backgroundColor: ['#FCD535', '#23262F', '#FFD700', '#1E2026'],
+          }]
+        },
+        options: {
+          plugins: { legend: { display: true, position: 'bottom', labels: { color: '#F5F6FA' } } },
+        }
+      });
+    };
+
+    // Theme toggle
+    document.getElementById('theme-toggle').onclick = function() {
+      document.body.classList.toggle('light-mode');
+      this.textContent = document.body.classList.contains('light-mode') ? '🌞' : '🌙';
+    };
+
+    // Hamburger menu (for mobile)
+    function toggleMenu() {
+      document.querySelector('.navbar ul').classList.toggle('show');
+    }
+  </script>
 </body>
 </html>

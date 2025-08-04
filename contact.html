@@ -1,20 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
-  <link rel="stylesheet" href="assets/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact SYJ Network</title>
+  <link rel="stylesheet" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
 </head>
 <body>
-  <div id="header"></div>
-
+  <header>
+    <nav class="navbar">
+      <div class="logo">SYJ Network</div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="mining.html">Mining</a></li>
+        <li><a href="tokenomics.html">Tokenomics</a></li>
+        <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="education.html">Education</a></li>
+        <li><a href="community.html">Community</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+      </ul>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
+    </nav>
+  </header>
   <main>
-    <h1>Contact Us</h1><p>Get in touch with our team for inquiries, support, or collaborations.</p>
+    <section class="hero animated">
+      <h1>Contact Us</h1>
+      <p class="tagline">Questions, feedback, or partnership? Get in touch with the SYJ team.</p>
+    </section>
+    <section class="features grid">
+      <div class="card interactive">
+        <h2>Email</h2>
+        <p>contact@syj-network.com</p>
+        <a href="mailto:contact@syj-network.com" class="btn btn-small">Send Email</a>
+      </div>
+      <div class="card interactive">
+        <h2>Telegram</h2>
+        <p>Chat with us on Telegram for support and updates.</p>
+        <a href="https://t.me/yourtelegram" class="btn btn-small" target="_blank">Open Telegram</a>
+      </div>
+      <div class="card interactive">
+        <h2>Discord</h2>
+        <p>Join our Discord server for community discussions.</p>
+        <a href="https://discord.gg/yourdiscord" class="btn btn-small" target="_blank">Join Discord</a>
+      </div>
+      <div class="card interactive">
+        <h2>GitHub Issues</h2>
+        <p>Report bugs or suggest features on our GitHub.</p>
+        <a href="https://github.com/syj-network/syj-website/issues" class="btn btn-small" target="_blank">Open GitHub Issues</a>
+      </div>
+    </section>
   </main>
-
-  <div id="footer"></div>
-
-  <script src="js/include.js"></script>
+  <footer>
+    <p>&copy; 2025 SYJ Network. Powered by Sayanjali Nexus Pvt Ltd.</p>
+    <div class="footer-links">
+      <a href="https://github.com/syj-network/syj-website">GitHub</a> |
+      <a href="https://t.me/yourtelegram">Telegram</a> |
+      <a href="https://discord.gg/yourdiscord">Discord</a>
+    </div>
+  </footer>
+  <script>
+    function toggleMenu() { document.querySelector('.navbar ul').classList.toggle('show'); }
+  </script>
 </body>
 </html>
