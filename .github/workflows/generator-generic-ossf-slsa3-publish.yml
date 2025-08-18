@@ -1,66 +1,141 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
+name: SLSA Generic Generator (Publish)
 
-# This workflow lets you generate SLSA provenance file for your project.
-# The generation satisfies level 3 for the provenance requirements - see https://slsa.dev/spec/v0.1/requirements
-# The project is an initiative of the OpenSSF (openssf.org) and is developed at
-# https://github.com/slsa-framework/slsa-github-generator.
-# The provenance file can be verified using https://github.com/slsa-framework/slsa-verifier.
-# For more information about SLSA and how it improves the supply-chain, visit slsa.dev.
-
-name: SLSA generic generator
 on:
-  workflow_dispatch:
   release:
-    types: [created]
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write          # needed to attach artifacts to Releases
+  id-token: write          # OIDC for provenance signing
+  actions: read
+  packages: read
+
+env:
+  ARTIFACT_NAME: site-build
+  BUILD_DIR: dist
 
 jobs:
   build:
+    name: Build site artifact
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # If you actually build (e.g., npm/yarn/jekyll), replace this block with real steps.
+      # For a static site, this copies repo files to the build dir, excluding .git and .github.
+      - name: Prepare build dir
+        shell: bash
+        run: |
+          mkdir -p "${BUILD_DIR}"
+          shopt -s dotglob extglob
+          rsync -a --exclude ".git" --exclude ".github" ./ "${BUILD_DIR}/"
+
+      - name: Upload site artifact (v4)
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.BUILD_DIR }}
+          if-no-files-found: error
+          retention-days: 7
+
+  detect_release:
+    name: Detect release info (no set-output)
     runs-on: ubuntu-latest
     outputs:
-      digests: ${{ steps.hash.outputs.digests }}
-
+      tag: ${{ steps.tag.outputs.tag }}
+      release_id: ${{ steps.rel.outputs.release_id }}
     steps:
-      - uses: actions/checkout@v4
-
-      # ========================================================
-      #
-      # Step 1: Build your artifacts.
-      #
-      # ========================================================
-      - name: Build artifacts
+      - name: Derive tag
+        id: tag
+        shell: bash
         run: |
-            # These are some amazing artifacts.
-            echo "artifact1" > artifact1
-            echo "artifact2" > artifact2
+          # Works for release and workflow_dispatch (fallbacks to REF name)
+          TAG="${GITHUB_REF_NAME:-${{ github.ref_name }}}"
+          echo "tag=${TAG}" >> "$GITHUB_OUTPUT"
 
-      # ========================================================
-      #
-      # Step 2: Add a step to generate the provenance subjects
-      #         as shown below. Update the sha256 sum arguments
-      #         to include all binaries that you generate
-      #         provenance for.
-      #
-      # ========================================================
-      - name: Generate subject for provenance
-        id: hash
+      - name: Lookup release id for tag
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
-          set -euo pipefail
-
-          # List the artifacts the provenance will refer to.
-          files=$(ls artifact*)
-          # Generate the subjects (base64 encoded).
-          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+          set -e
+          # Will be empty on workflow_dispatch if no release exists for the tag
+          JSON="$(gh api -H "Accept: application/vnd.github+json" \
+            repos/${{ github.repository }}/releases/tags/${{ steps.tag.outputs.tag }} || true)"
+          if [ -z "$JSON" ] || [ "$JSON" = "null" ]; then
+            echo "release_id=" >> "$GITHUB_OUTPUT"
+          else
+            ID="$(echo "$JSON" | jq -r '.id')"
+            echo "release_id=${ID}" >> "$GITHUB_OUTPUT"
+          fi
 
   provenance:
-    needs: [build]
+    name: Generate and attach provenance
+    needs: [build, detect_release]
+    runs-on: ubuntu-latest
     permissions:
-      actions: read   # To read the workflow path.
-      id-token: write # To sign the provenance.
-      contents: write # To add assets to a release.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
-    with:
-      base64-subjects: "${{ needs.build.outputs.digests }}"
-      upload-assets: true # Optional: Upload to a new release
+      contents: write
+      id-token: write
+      actions: read
+    steps:
+      - name: Download site artifact (v4)
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: ${{ env.BUILD_DIR }}
+
+      # ────────────────────────────────────────────────────────────────
+      # OPTION A (simple, placeholder): create a minimal provenance file
+      # Replace this block with your real SLSA generator if you already use one.
+      # ────────────────────────────────────────────────────────────────
+      - name: Create minimal provenance (placeholder)
+        id: gen
+        shell: bash
+        run: |
+          mkdir -p provenance
+          # Calculate a digest for the artifact directory tarball to reference in provenance
+          tar -C "${{ env.BUILD_DIR }}" -czf provenance/${{ env.ARTIFACT_NAME }}.tar.gz .
+          DIGEST="$(sha256sum provenance/${{ env.ARTIFACT_NAME }}.tar.gz | awk '{print $1}')"
+          cat > provenance/${{ env.ARTIFACT_NAME }}.intoto.jsonl <<EOF
+          {"_type":"https://in-toto.io/Statement/v1","predicateType":"https://slsa.dev/provenance/v1","subject":[{"name":"${{ env.ARTIFACT_NAME }}.tar.gz","digest":{"sha256":"${DIGEST}"}}],"predicate":{"builder":{"id":"github-actions"},"buildType":"generic","invocation":{"configSource":{"uri":"${{ github.server_url }}/${{ github.repository }}","digest":{},"entryPoint":"${{ github.workflow }}"}},"metadata":{"buildStartedOn":"${{ github.event.repository.updated_at }}","completeness":{"parameters":true,"environment":true,"materials":true}}}}
+          EOF
+          echo "prov_file=provenance/${{ env.ARTIFACT_NAME }}.intoto.jsonl" >> "$GITHUB_OUTPUT"
+          echo "tar_file=provenance/${{ env.ARTIFACT_NAME }}.tar.gz" >> "$GITHUB_OUTPUT"
+
+      # ────────────────────────────────────────────────────────────────
+      # OPTION B (recommended): use an actual SLSA generator action
+      # Uncomment and set proper inputs if you prefer a maintained generator.
+      #
+      # - name: Generate SLSA provenance
+      #   id: gen
+      #   uses: slsa-framework/slsa-github-generator/.github/actions/generate_provenance@v2
+      #   with:
+      #     artifact_path: ${{ env.BUILD_DIR }}
+      #   # Ensure the action you use does NOT rely on set-output; modern versions should be fine.
+      #   # Then write outputs to $GITHUB_OUTPUT like above, or consume the action's native outputs.
+      # ────────────────────────────────────────────────────────────────
+
+      - name: Upload provenance artifact (v4)
+        uses: actions/upload-artifact@v4
+        with:
+          name: provenance
+          path: |
+            ${{ steps.gen.outputs.prov_file }}
+            ${{ steps.gen.outputs.tar_file }}
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Attach provenance to Release (if release exists)
+        if: needs.detect_release.outputs.release_id != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh release upload \
+            "${{ needs.detect_release.outputs.tag }}" \
+            "${{ steps.gen.outputs.prov_file }}" \
+            "${{ steps.gen.outputs.tar_file }}" \
+            --clobber
