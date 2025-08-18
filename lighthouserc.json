@@ -1,0 +1,14 @@
+{
+7777     "ci": {
+       "collect": {
+         "url": ["https://your-live-site-url.com"],
+         "numberOfRuns": 3
+       },
+       "assert": {
+         "preset": "lighthouse:recommended"
+       },
+       "upload": {
+         "target": "temporary-public-storage"
+       }
+     }
+   }
