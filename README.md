@@ -1,4 +1,11 @@
 # SYJ Cryptocurrency Website
+<!-- Status & Security Badges -->
+[![SLSA Generic Generator](https://github.com/syj-network/syj-website/actions/workflows/generator-generic-ossf-slsa3-publish.yml/badge.svg)](https://github.com/syj-network/syj-website/actions/workflows/generator-generic-ossf-slsa3-publish.yml)
+[![CodeQL](https://github.com/syj-network/syj-website/actions/workflows/codeql.yml/badge.svg)](https://github.com/syj-network/syj-website/actions/workflows/codeql.yml)
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/syj-network/syj-website?label=OpenSSF%20Scorecard)](https://securityscorecards.dev/viewer/?uri=github.com/syj-network/syj-website)
+[![GitHub Pages Deploy](https://github.com/syj-network/syj-website/actions/workflows/pages-deploy.yml/badge.svg)](https://github.com/syj-network/syj-website/actions/workflows/pages-deploy.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-informational.svg)](./LICENSE)
+[![Repo Views](https://komarev.com/ghpvc/?username=syj-network&repo=syj-website&label=Repo%20Views&style=flat)](https://github.com/syj-network/syj-website)
 
 Welcome to the official repository for the SYJ Network website and **SYJ Token** by **SAYANJALI NEXUS PVT LTD**!
 This site is designed to educate, empower, and enable cryptocurrency adoption in India with a Binance-inspired professional theme.
